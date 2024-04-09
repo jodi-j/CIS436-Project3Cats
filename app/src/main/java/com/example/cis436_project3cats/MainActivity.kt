@@ -10,6 +10,8 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.cis436_project3cats.databinding.ActivityMainBinding
+import org.json.JSONArray
+import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
@@ -20,8 +22,8 @@ class MainActivity : AppCompatActivity() {
 
         //method to interact with API
         fun printCatData() {
-            var catUrl = "https://api.thecatapi.com/v1/breeds" +
-                    "?api_key=USE_YOUR_OWN_KEY_YOU_NAUGHTY_THIEF"
+            val catUrl = "https://api.thecatapi.com/v1/breeds" +
+                    "?api_key=live_yBUe310AABVy5t9rfxI5lB3dJIkU0dAOYIQO7g73eDmn5BpLbXcr2A9ThHfXkBjz"
 
             val queue = Volley.newRequestQueue(this)
 
@@ -29,12 +31,24 @@ class MainActivity : AppCompatActivity() {
             val stringRequest = StringRequest(
                 Request.Method.GET, catUrl,
                 { response ->
-                    Log.i("MainActivity", response.toString())
+                    var catsArray : JSONArray = JSONArray(response)
+                    //indices from 0 through catsArray.length()-1
+                    for(i in 0 until catsArray.length()) {
+                        //${} is to interpolate the string /
+// uses a string template
+                        var theCat : JSONObject = catsArray.getJSONObject(i)
+                        //now get the properties we want: name and description
+                        Log.i("MainActivity",
+                            "Cat name: ${theCat.getString("name")}")
+                        Log.i("MainActivity",
+                            "Cat description: ${theCat.getString("description")}")
+                    }//end for
                 },
                 {
                     Log.i("MainActivity", "That didn't work!")
                 })
-                // Add the request to the RequestQueue.
+
+            // Add the request to the RequestQueue.
                 queue.add(stringRequest)
 
         }
