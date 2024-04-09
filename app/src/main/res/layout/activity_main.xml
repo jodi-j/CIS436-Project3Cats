@@ -9,13 +9,13 @@
 
     <Button
         android:id="@+id/btnGetCatData"
-        android:layout_width="242dp"
-        android:layout_height="132dp"
-        android:layout_marginTop="296dp"
+        android:layout_width="350dp"
+        android:layout_height="97dp"
+        android:layout_marginTop="16dp"
         android:text="Get Cat Data"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

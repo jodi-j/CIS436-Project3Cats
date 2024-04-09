@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
                     //indices from 0 through catsArray.length()-1
                     for(i in 0 until catsArray.length()) {
                         //${} is to interpolate the string /
-// uses a string template
+                        // uses a string template
                         var theCat : JSONObject = catsArray.getJSONObject(i)
                         //now get the properties we want: name and description
                         Log.i("MainActivity",
