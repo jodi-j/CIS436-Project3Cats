@@ -10,7 +10,7 @@ import com.example.cis436_project3cats.databinding.ActivityMainBinding
 import org.json.JSONArray
 import org.json.JSONObject
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
     private lateinit var binding : ActivityMainBinding
     private var nameArray: MutableList<String> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
                     // Update spinner after fetching data
                     val spinnerFragment =
                         supportFragmentManager.findFragmentById(R.id.fragmentSpinner) as SpinnerFragment
-                    spinnerFragment.setSpinner(nameArray)
+                    spinnerFragment.setSpinner(nameArray, this)
                 },
                 {
                     Log.i("MainActivity", "That didn't work!")
@@ -55,5 +55,10 @@ class MainActivity : AppCompatActivity() {
         // Call getCatData when the activity starts
         getCatData()
     }
+
+    override fun onItemSelect(catChoice: String) {
+        binding.tvTempCat.text = catChoice
+    }
+
 
 }
