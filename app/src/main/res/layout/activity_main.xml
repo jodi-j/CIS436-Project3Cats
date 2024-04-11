@@ -10,12 +10,12 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentSpinner"
         android:name="com.example.cis436_project3cats.SpinnerFragment"
-        android:layout_width="408dp"
+        android:layout_width="0dp"
         android:layout_height="73dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appTitle"
         tools:layout="@layout/fragment_spinner" />
 
     <androidx.fragment.app.FragmentContainerView
@@ -28,5 +28,22 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fragmentSpinner"
+        app:layout_constraintVertical_bias="1.0"
         tools:layout="@layout/fragment_cat_info" />
+
+    <TextView
+        android:id="@+id/appTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="The Cat App!"
+        android:textAlignment="center"
+        android:textColor="#EF35C1"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
