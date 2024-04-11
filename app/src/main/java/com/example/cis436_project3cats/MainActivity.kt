@@ -32,6 +32,9 @@ class MainActivity : AppCompatActivity() {
                     val catsArray = JSONArray(response)
                     for(i in 0 until catsArray.length()) {
                         val theCat : JSONObject = catsArray.getJSONObject(i)
+                        //printing our desc (DELETE LATER)
+                        Log.i("MainActivity",
+                            "Cat description: ${theCat.getString("description")}")
                         //store cat names
                         nameArray.add(theCat.getString("name"))
                     }//end for
