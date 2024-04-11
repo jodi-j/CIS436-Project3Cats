@@ -3,10 +3,7 @@ package com.example.cis436_project3cats
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.android.volley.Request
-import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.example.cis436_project3cats.databinding.ActivityMainBinding
@@ -15,13 +12,14 @@ import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    private var nameArray: MutableList<String> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         //method to interact with API
-        fun printCatData() {
+        fun getCatData() {
             val catUrl = "https://api.thecatapi.com/v1/breeds" +
                     "?api_key=live_yBUe310AABVy5t9rfxI5lB3dJIkU0dAOYIQO7g73eDmn5BpLbXcr2A9ThHfXkBjz"
 
@@ -31,32 +29,28 @@ class MainActivity : AppCompatActivity() {
             val stringRequest = StringRequest(
                 Request.Method.GET, catUrl,
                 { response ->
-                    var catsArray : JSONArray = JSONArray(response)
-                    //indices from 0 through catsArray.length()-1
+                    val catsArray = JSONArray(response)
                     for(i in 0 until catsArray.length()) {
-                        //${} is to interpolate the string /
-                        // uses a string template
-                        var theCat : JSONObject = catsArray.getJSONObject(i)
-                        //now get the properties we want: name and description
-                        Log.i("MainActivity",
-                            "Cat name: ${theCat.getString("name")}")
-                        Log.i("MainActivity",
-                            "Cat description: ${theCat.getString("description")}")
+                        val theCat : JSONObject = catsArray.getJSONObject(i)
+                        //store cat names
+                        nameArray.add(theCat.getString("name"))
                     }//end for
+
+                    // Update spinner after fetching data
+                    val spinnerFragment =
+                        supportFragmentManager.findFragmentById(R.id.fragmentSpinner) as SpinnerFragment
+                    spinnerFragment.setSpinner(nameArray)
                 },
                 {
                     Log.i("MainActivity", "That didn't work!")
                 })
 
             // Add the request to the RequestQueue.
-                queue.add(stringRequest)
-
+            queue.add(stringRequest)
         }
 
-        //set button handler
-        binding.btnGetCatData.setOnClickListener {
-            printCatData()
-        }
-
+        // Call getCatData when the activity starts
+        getCatData()
     }
+
 }
