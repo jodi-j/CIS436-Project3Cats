@@ -21,8 +21,8 @@
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragmentCatInfo"
         android:name="com.example.cis436_project3cats.CatInfoFragment"
-        android:layout_width="404dp"
-        android:layout_height="641dp"
+        android:layout_width="414dp"
+        android:layout_height="578dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
