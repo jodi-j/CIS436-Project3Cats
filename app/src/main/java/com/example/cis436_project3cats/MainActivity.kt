@@ -13,6 +13,7 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
     private lateinit var binding : ActivityMainBinding
     private var nameArray: MutableList<String> = ArrayList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -24,25 +25,36 @@ class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
                     "?api_key=live_yBUe310AABVy5t9rfxI5lB3dJIkU0dAOYIQO7g73eDmn5BpLbXcr2A9ThHfXkBjz"
 
             val queue = Volley.newRequestQueue(this)
+            //create list of catInfo (list of class objects)
+            val catInfoList: MutableList<CatInfo> = ArrayList()
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
                 Request.Method.GET, catUrl,
                 { response ->
                     val catsArray = JSONArray(response)
+
+
                     for(i in 0 until catsArray.length()) {
                         val theCat : JSONObject = catsArray.getJSONObject(i)
-                        //printing our desc (DELETE LATER)
-                        Log.i("MainActivity",
-                            "Cat description: ${theCat.getString("description")}")
+                        //store cat info in class
+                        val catInfo = CatInfo(
+                            name = theCat.getString("name"),
+                            temperament = theCat.getString("temperament"),
+                            origin = theCat.getString("origin"),
+                            description = theCat.getString("description")
+                        )
+                        catInfoList.add(catInfo)
+
                         //store cat names
-                        nameArray.add(theCat.getString("name"))
+                        //nameArray.add(theCat.getString("name"))
                     }//end for
 
                     // Update spinner after fetching data
                     val spinnerFragment =
                         supportFragmentManager.findFragmentById(R.id.fragmentSpinner) as SpinnerFragment
-                    spinnerFragment.setSpinner(nameArray, this)
+                    //uses catInfoList to crate new list of all cat names
+                    spinnerFragment.setSpinner(catInfoList.map { it.name }.toMutableList(), this)
                 },
                 {
                     Log.i("MainActivity", "That didn't work!")

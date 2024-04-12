@@ -11,6 +11,11 @@ import com.example.cis436_project3cats.databinding.FragmentCatInfoBinding
 class CatInfoFragment : Fragment() {
     private lateinit var binding: FragmentCatInfoBinding
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -21,6 +26,11 @@ class CatInfoFragment : Fragment() {
     }
 
     //TODO: need function to retrieve cat img and display it
+    fun updateTextDesc (name : String){
+
+
+    }
+
     //TODO: need function to retrieve cat data and display it
 
 
