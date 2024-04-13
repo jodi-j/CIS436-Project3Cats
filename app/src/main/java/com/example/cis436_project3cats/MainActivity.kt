@@ -13,7 +13,8 @@ import org.json.JSONObject
 class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
     private lateinit var binding : ActivityMainBinding
     private var nameArray: MutableList<String> = ArrayList()
-
+    //create list of catInfo (list of class objects)
+    private var catInfoList: MutableList<CatInfo> = ArrayList()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -25,8 +26,7 @@ class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
                     "?api_key=live_yBUe310AABVy5t9rfxI5lB3dJIkU0dAOYIQO7g73eDmn5BpLbXcr2A9ThHfXkBjz"
 
             val queue = Volley.newRequestQueue(this)
-            //create list of catInfo (list of class objects)
-            val catInfoList: MutableList<CatInfo> = ArrayList()
+
 
             // Request a string response from the provided URL.
             val stringRequest = StringRequest(
@@ -71,7 +71,15 @@ class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
     }
 
     override fun onItemSelect(catChoice: String) {
-        binding.tvTempCat.text = catChoice
+        //get catinfo fragment
+        val catInfoFragment = supportFragmentManager.findFragmentById(R.id.fragmentCatInfo) as CatInfoFragment
+
+        // Find the CatInfo object for the selected cat
+        val selectedCatInfo = catInfoList.find { it.name == catChoice }
+        selectedCatInfo?.let {
+            catInfoFragment.updateTextDesc(it)
+        }
+
     }
 
 

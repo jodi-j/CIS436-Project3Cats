@@ -26,7 +26,18 @@ class CatInfoFragment : Fragment() {
     }
 
     //TODO: need function to retrieve cat img and display it
-    fun updateTextDesc (name : String){
+    fun updateTextDesc (cat : CatInfo){
+
+        //create one long string will all details
+        val combinedCatDesc = """
+            Name: ${cat.name}
+            Origin: ${cat.origin}
+            Temperament: ${cat.temperament}
+            Description: ${cat.description}
+        """.trimIndent()
+
+        binding.tvCatDesc.text = combinedCatDesc
+
 
 
     }
