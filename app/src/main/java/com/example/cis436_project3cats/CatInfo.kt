@@ -5,5 +5,6 @@ data class CatInfo(
     val name: String,
     val temperament: String,
     val origin: String,
-    val description: String
+    val description: String,
+    val imageURL: String
 )

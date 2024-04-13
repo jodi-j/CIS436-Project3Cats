@@ -42,7 +42,9 @@ class MainActivity : AppCompatActivity(), SpinnerFragment.SpinnerListener {
                             name = theCat.getString("name"),
                             temperament = theCat.getString("temperament"),
                             origin = theCat.getString("origin"),
-                            description = theCat.getString("description")
+                            description = theCat.getString("description"),
+                            //not all cats have images for some reason so use elvis operator to prevent app crash
+                            imageURL = theCat.optJSONObject("image")?.getString("url") ?: "default_image_url"
                         )
                         catInfoList.add(catInfo)
 
