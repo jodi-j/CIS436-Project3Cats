@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.bumptech.glide.Glide
 import com.example.cis436_project3cats.databinding.FragmentCatInfoBinding
 
 
@@ -31,12 +32,19 @@ class CatInfoFragment : Fragment() {
         //create one long string will all details
         val combinedCatDesc = """
             Name: ${cat.name}
+            
             Origin: ${cat.origin}
+            
             Temperament: ${cat.temperament}
+            
             Description: ${cat.description}
         """.trimIndent()
 
         binding.tvCatDesc.text = combinedCatDesc
+
+        //using glide to handle image loading into image view
+        Glide.with(this).load(cat.imageURL).into(binding.iVCat)
+
 
 
 
