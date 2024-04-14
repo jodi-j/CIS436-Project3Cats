@@ -26,21 +26,13 @@ class CatInfoFragment : Fragment() {
         return binding.root
     }
 
-    //TODO: need function to retrieve cat img and display it
     fun updateTextDesc (cat : CatInfo){
 
-        //create one long string will all details
-        val combinedCatDesc = """
-            Name: ${cat.name}
-            
-            Origin: ${cat.origin}
-            
-            Temperament: ${cat.temperament}
-            
-            Description: ${cat.description}
-        """.trimIndent()
+        binding.tVName.text = "Name: ${cat.name}"
+        binding.tVOrigin.text = "Origin: ${cat.origin}"
+        binding.tVTemper.text = "Temperament: ${cat.temperament}"
+        binding.tvCatDesc.text = "Description: ${cat.description}"
 
-        binding.tvCatDesc.text = combinedCatDesc
 
         //using glide to handle image loading into image view
         Glide.with(this).load(cat.imageURL).into(binding.iVCat)
@@ -50,7 +42,6 @@ class CatInfoFragment : Fragment() {
 
     }
 
-    //TODO: need function to retrieve cat data and display it
 
 
 }//end of fragment

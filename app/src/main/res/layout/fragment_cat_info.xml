@@ -8,8 +8,8 @@
     tools:context=".CatInfoFragment" >
 
     <ScrollView
-        android:layout_width="380dp"
-        android:layout_height="657dp"
+        android:layout_width="383dp"
+        android:layout_height="678dp"
         android:layout_marginStart="12dp"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -19,7 +19,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <ImageView
@@ -29,11 +29,33 @@
                 android:src="@drawable/duck2" />
 
             <TextView
-                android:id="@+id/tvCatDesc"
+                android:id="@+id/tVName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tVOrigin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Origin"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tVTemper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="temper"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/tvCatDesc"
+                android:layout_width="match_parent"
+                android:layout_height="419dp"
                 android:text="This is my cat description!!!\nWhatcha up to?\nhiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii"
-                android:textSize="16sp" />
+                android:textSize="20sp" />
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
